@@ -4,11 +4,11 @@
 本プロジェクトは、Laravel を使用したシンプルかつ高機能なお問い合わせ管理システムです。
 入力フォーム、確認画面、サンクスページに加え、管理者向けのデータ管理機能を備えています。
 
-## 🌲 プロジェクト概要
+##  プロジェクト概要
 - **目的**: ユーザーからの問い合わせを円滑に管理し、管理者側で確認・検索・抽出を可能にする。
 - **ターゲット**: ファッションECサイト等のカスタマーサポート。
 
-## 🚀 機能一覧
+##  機能一覧
 ### ユーザー側
 - お問い合わせ入力フォーム
   - バリデーション機能（日本語エラーメッセージ対応）
@@ -25,13 +25,49 @@
 - お問い合わせデータの削除
 - CSVエクスポート
 
-## 🛠 使用技術
+##  使用技術
 - **Framework**: Laravel Framework 8.83.29
 - **Language**: PHP 8.5, HTML, CSS
 - **Database**: MySQL [8.0 など]
 - **Library**: [Laravel Fortify]
 
-## 📦 環境構築
+##  ER図
+erDiagram
+    users ||--o{ contacts : "作成/管理"
+    categories ||--o{ contacts : "分類"
+
+    users {
+        bigint id PK
+        varchar name "NOT NULL"
+        varchar email "NOT NULL"
+        varchar password "NOT NULL"
+        timestamp created_at
+        timestamp deleted_at
+    }
+
+    categories {
+        bigint id PK
+        varchar content "NOT NULL / お問い合わせ種類"
+        timestamp created_at
+        timestamp deleted_at
+    }
+
+    contacts {
+        bigint id PK
+        bigint category_id FK
+        varchar first_name "NOT NULL"
+        varchar last_name "NOT NULL"
+        tinyint gender "NOT NULL"
+        varchar email "NOT NULL"
+        varchar tel "NOT NULL / 3分割を結合"
+        varchar address "NOT NULL"
+        varchar building
+        text detail "NOT NULL"
+        timestamp created_at
+        timestamp deleted_at
+    }
+
+##  環境構築
 ```bash
 # 1. リポジトリのクローン
 git clone git@github.com:yurikodoi/contact-form-test.git
@@ -46,3 +82,5 @@ php artisan key:generate
 
 # 4. マイグレーションとシーディング
 php artisan migrate --seed
+
+
