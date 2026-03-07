@@ -144,7 +144,13 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
-        ],
+        ],'email' => [
+        'required' => 'メールアドレスを入力してください', // FN019 1-a
+        'email' => 'メールアドレスはメール形式で入力してください', // FN019 1-b
+    ],
+    'password' => [
+        'required' => 'パスワードを入力してください', // FN019 2-a
+    ],
     ],
 
     /*

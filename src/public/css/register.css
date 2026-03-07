@@ -1,0 +1,135 @@
+/* 全体のレイアウト：画面中央に配置 */
+.register__content {
+    background-color: #ffffff;
+    margin: 0 auto;
+    padding: 80px 0;
+    max-width: 600px;
+    /* お問い合わせより少しスリムにすると可愛いです */
+    width: 90%;
+}
+
+/* タイトル「Register」の装飾 */
+.register__header h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #8b7969;
+    /* 落ち着いた濃い茶色 */
+    margin-bottom: 50px;
+    font-family: 'serif';
+    /* 見本が少し大人っぽいなら明朝体 */
+}
+
+/* 入力グループの調整 */
+.form__group {
+    margin-bottom: 25px;
+}
+
+.form__group-title {
+    margin-bottom: 10px;
+}
+
+.form__label--item {
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+/* 入力欄（input）のスタイル */
+.form__input--text input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0dfde;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    /* ほんの少しだけグレーにして「入力欄」を強調 */
+    box-sizing: border-box;
+}
+
+/* 登録ボタン：ベージュ（#B9A899） */
+.form__button {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.form__button-submit {
+    background-color: #B9A899;
+    /* 指定のベージュ */
+    color: #ffffff;
+    padding: 12px 80px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form__button-submit:hover {
+    background-color: #a89788;
+}
+
+/* ログインはこちら リンク */
+.login__link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login__link a {
+    color: #8b7969;
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+/* 画面全体の背景色を指定の薄いベージュに */
+body {
+    background-color: #F1ECE6 !important;
+}
+
+/* 登録フォームの白いボックス */
+.register__content {
+    background-color: #ffffff;
+    /* ロゴ、名前〜パスワードの背景は白 */
+    margin: 50px auto;
+    padding: 40px 60px;
+    max-width: 600px;
+    border-radius: 2px;
+}
+
+.register__header h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #827469;
+    /* 登録ボタンと同じ色味で統一感を出す */
+    margin-bottom: 30px;
+}
+
+.form__label--item {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* 入力欄のスタイル */
+.form__group-content input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* 登録ボタン：指定色 #827469 */
+.form__button {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.form__button-submit {
+    background-color: #827469;
+    color: #fff;
+    padding: 12px 80px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}

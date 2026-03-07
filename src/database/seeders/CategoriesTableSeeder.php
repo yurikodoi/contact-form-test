@@ -3,13 +3,21 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Category;
+use Illuminate\Support\Facades\DB; // DB操作に必要
+use App\Models\Category; // Categoryモデルを使う
 
 class CategoriesTableSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
     {
-        // 既存のデータをクリアして、画像通りの5項目を作成
+        // 既存のデータを一度消してから入れる（二重登録防止）
+        DB::table('categories')->truncate();
+
         $categories = [
             ['name' => '商品のお届けについて'],
             ['name' => '商品の交換について'],

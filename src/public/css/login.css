@@ -1,0 +1,104 @@
+/* 画面全体の背景色 */
+body {
+    background-color: #F1ECE6 !important;
+    margin: 0;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+/* 外側のコンテナ（白背景はなし） */
+.login__content {
+    margin: 80px auto;
+    max-width: 800px;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+/* タイトル：白枠の外 */
+.login__header h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #8b7969;
+    margin-bottom: 40px;
+}
+
+/* ログインフォームの白枠部分 */
+.login-form {
+    background-color: #ffffff;
+    padding: 60px 100px;
+    /* 左右の余白を広げて中身を中央に寄せる */
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+/* フォームの各行：間隔を広げる (margin-bottom: 40px) */
+.form__group {
+    display: flex;
+    /* 横並びにして幅を制御 */
+    align-items: center;
+    margin-bottom: 40px;
+    /* 項目間の縦の間隔を広く設定 */
+}
+
+/* ラベル部分：幅を固定 */
+.form__group-title {
+    width: 30%;
+    /* 全体の3割をラベルに */
+}
+
+.form__label--item {
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+}
+
+/* 入力欄のコンテナ：幅を絞る */
+.form__group-content {
+    width: 70%;
+    /* 残り7割を割り当て、さらに中で絞る */
+}
+
+/* 入力欄本体：ここで幅を狭く調整 */
+.form__group-content input {
+    width: 100%;
+    /* 親(70%)に対して100% */
+    max-width: 400px;
+    /* 広がりすぎないよう上限を設定 */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+/* エラーメッセージ */
+.form__error {
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* ログインボタンエリア */
+.form__button {
+    text-align: center;
+    margin-top: 50px;
+    /* 入力欄との距離をしっかり開ける */
+}
+
+.form__button-submit {
+    background-color: #8b7969;
+    color: #ffffff;
+    padding: 12px 100px;
+    /* 見本に合わせてボタンを少し横長に */
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.form__button-submit:hover {
+    opacity: 0.8;
+}
+
+
+

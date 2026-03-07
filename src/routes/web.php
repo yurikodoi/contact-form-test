@@ -1,18 +1,51 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\ContactConfirmController;
+use App\Http\Controllers\ContactThanksController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactDeleteController;
+use App\Http\Controllers\ContactController;
+
+
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// --- お問い合わせフロー ---
+// 1. お問い合わせ入力画面
+Route::get('/', [ContactFormController::class, 'showForm'])->name('contact.form');
+
+// 2. 入力画面から「確認」を押した時
+Route::post('/confirm', [ContactFormController::class, 'handleForm'])->name('contact.confirm');
+
+// 3. 確認画面から「送信」または「修正」を押した時
+Route::post('/submit', [ContactConfirmController::class, 'submitForm'])->name('contact.submit');
+
+// 4. 完了画面
+Route::get('/thanks', [ContactThanksController::class, 'showThanks'])->name('contact.thanks');
+
+
+// --- 管理画面系（ログイン認証が必要なグループ） ---
+Route::middleware('auth')->group(function () {
+    
+    // 管理画面トップ（AdminControllerのindexメソッドを呼び出す）
+    Route::get('/admin', [AdminController::class, 'index'])->name('contact.index');
+
+    // 検索機能（Bladeで contact.search と呼んでいるので、名前を合わせる）
+    Route::get('/admin/search', [AdminController::class, 'searchContacts'])->name('contact.search');
+
+    // CSVエクスポート
+    Route::get('/admin/export', [AdminController::class, 'exportContacts'])->name('contact.export');
+
+    // 削除機能
+    Route::delete('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('contact.delete');
 });
+
+Route::get('/contact', [ContactController::class, 'index']);
+
+
