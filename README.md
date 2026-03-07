@@ -72,6 +72,7 @@ erDiagram
         timestamp created_at
         timestamp deleted_at
     }
+```
 
 ##  環境構築
 ```bash
