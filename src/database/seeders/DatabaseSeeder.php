@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use App\Models\Contact;
 
-class CategoriesTableSeeder extends Seeder
+
+class DatabaseSeeder extends Seeder
 {
     public function run()
     {
@@ -21,5 +23,7 @@ class CategoriesTableSeeder extends Seeder
         foreach ($categories as $category) {
             Category::create($category);
         }
+
+        Contact::factory()->count(35)->create();
     }
 }

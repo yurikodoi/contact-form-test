@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/admin.css') }}?{{ time() }}">
 
 <div class="container">

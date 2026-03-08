@@ -2,6 +2,8 @@
 @extends('layouts.app')
 
 @section('content')
+<link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
+<div class="container">
 <div class="container">
     <h2>お問い合わせ内容検索</h2>
 

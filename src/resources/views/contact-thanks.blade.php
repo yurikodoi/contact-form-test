@@ -2,8 +2,9 @@
 @extends('layouts.app')
 
 @section('content')
+<link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-<link rel="stylesheet" href="{{ asset('css/contact-form.css') }}">
+<link rel="stylesheet" href="{{ asset('css/contact-thanks.css') }}">
 <style>
     header { display: none !important; }
 </style>

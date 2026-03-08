@@ -1,0 +1,89 @@
+/* resources/css/contact-form.css */
+
+/* ページ全体の背景を白に固定 */
+.thanks__content {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+    /* 上下の色もすべて白 [cite: 1, 2, 4] */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* 背景の巨大文字 "Thank you" [cite: 2, 4] */
+.thanks__back-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* 指定スペック */
+    font-family: 'Inika', serif;
+    font-weight: 400;
+    font-size: 280px;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+    /* 色：背景の白に馴染む非常に薄いグレー（または指定色があれば変更可） */
+    color: #f9f9f9;
+    white-space: nowrap;
+    z-index: 1;
+    pointer-events: none;
+    text-transform: capitalize;
+    /* "Thank you" [cite: 2, 4] */
+}
+
+/* 前面コンテンツ */
+.thanks__inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+}
+
+/* 「お問い合わせありがとうございました」  */
+.thanks__message {
+    /* 指定スペック */
+    display: inline-block;
+    color: #8B7969;
+    /* 文字は白 */
+    font-family: 'Inika', serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+    /* レイアウト調整 */
+    padding: 40px 60px;
+    margin: 0 auto 60px;
+}
+
+/* ホームボタン  */
+.thanks__button-area {
+    display: block;
+}
+
+.thanks__button {
+    display: inline-block;
+    /* 指定スペック */
+    background: #82756A;
+    /* 指定の背景色 */
+    color: #ffffff;
+    font-family: 'Inika', serif;
+    font-weight: 400;
+    text-decoration: none;
+
+    /* ボタンサイズと調整 */
+    padding: 15px 80px;
+    font-size: 18px;
+    transition: opacity 0.3s;
+}
+
+.thanks__button:hover {
+    opacity: 0.8;
+}

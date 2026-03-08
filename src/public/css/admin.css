@@ -327,3 +327,174 @@ body {
     margin: 20px auto 0;
     display: block;
 }
+
+
+
+
+
+/* ==========================================================================
+   1. 全体設定 (Global)
+   ========================================================================== */
+body {
+    background-color: #fff;
+    /* 背景は全部白色 */
+    color: #8b7969;
+    font-family: "Noto Sans JP", sans-serif;
+    margin: 0;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1230px;
+    /* ボタンの配置に合わせて少し広めに調整 */
+    padding: 60px 20px 100px;
+}
+
+.page-title {
+    font-family: 'Inika', serif;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #8B7969;
+    margin-bottom: 45px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   2. フォーム要素スタイル (Forms)
+   ========================================================================== */
+.form-input,
+.form-select {
+    background-color: #fff;
+    /* 背景白 */
+    border: 1px solid #e0dfde;
+    /* 境界線のみ */
+    border-radius: 2px;
+    box-sizing: border-box;
+    color: #8b7969;
+    font-size: 14px;
+    height: 50px;
+    /* ボタンに合わせて50pxに統一 */
+    padding: 0 15px;
+    width: 100%;
+}
+
+/* ==========================================================================
+   3. 検索フォーム・ボタン (Search & Buttons)
+   ========================================================================== */
+.search-form__inner {
+    align-items: center;
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.search-form__actions {
+    display: flex;
+    gap: 15px;
+    margin-left: auto;
+}
+
+/* 共通ボタンベース */
+.btn {
+    align-items: center;
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+    text-decoration: none;
+    transition: opacity 0.3s;
+    border-style: solid;
+}
+
+/* 検索ボタン（リセットボタンとサイズを合わせる） */
+.btn--search {
+    background-color: #82756a;
+    color: #fff;
+    border: none;
+    width: 102.48px;
+    /* リセットボタンと統一 */
+    height: 50px;
+}
+
+/* リセットボタン：詳細スペックを反映 */
+.btn--reset {
+    background-color: #e2d9d0;
+    color: #fff;
+    /* 文字色は白色 */
+    width: 102.48px;
+    /* ご指定の 102.4757...px */
+    height: 50px;
+    /* ご指定の 50 */
+    border-width: 1px;
+    border-color: #e2d9d0;
+    opacity: 1;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   4. テーブル・ボタンデザイン (修正版)
+   ========================================================================== */
+
+/* 詳細ボタン：指定のスペックを完全反映 */
+.btn-detail {
+    /* サイズ・配置 */
+    width: 76px;
+    height: 39px;
+    box-sizing: border-box;
+    /* パディングを含めて76x39にする設定 */
+
+    /* 背景・ボーダー */
+    background-color: #fff;
+    border: 1px solid #e0dfde;
+    border-radius: 2px;
+    opacity: 1;
+
+    /* テキスト・余白 */
+    color: #bbab98;
+    font-size: 14px;
+    padding: 8px 20px 8px 20px;
+    /* 指定のパディング */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    /* その他 */
+    cursor: pointer;
+    line-height: 1;
+    transition: background-color 0.2s;
+    text-decoration: none;
+}
+
+.btn-detail:hover {
+    background-color: #fcfaf5;
+}
+
+/* 比較用：検索・リセットボタン（前回修正分） */
+.btn--search,
+.btn--reset {
+    width: 102.48px;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 2px;
+}
+
+.btn--reset {
+    background-color: #e2d9d0;
+    color: #fff;
+    border: 1px solid #e2d9d0;
+}
+
+/* ==========================================================================
+   6. テーブル本体 (微調整)
+   ========================================================================== */
+.admin-table td {
+    padding: 15px 20px;
+    /* 詳細ボタンの高さ(39px)に合わせてセルの高さを微調整 */
+    border-bottom: 1px solid #e0dfde;
+    color: #8b7969;
+    vertical-align: middle;
+}
