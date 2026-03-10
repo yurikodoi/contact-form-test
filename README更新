@@ -1,78 +1,104 @@
-# お問い合わせフォーム（お問い合わせシステム）
+# お問合せフォーム
 
-このリポジトリは、Laravelを使用したお問い合わせ管理システムです。
+Laravelを使用した、お問合せ管理およびユーザー管理システムです。
+
+## 開発環境
+
+- **言語:** PHP 8.x
+- **フレームワーク:** Laravel 8.x
+- **データベース:** MySQL 8.x
+- **ツール:** Docker / Laravel Sail
+
+## 作成した機能
+
+- お問合せフォーム（入力・確認・完了）
+- ユーザー登録・ログイン・ログアウト
+- 管理画面（一覧表示・詳細表示・検索・削除・CSV出力）
+- ページネーション機能
+
+## テーブル設計
+
+### Usersテーブル
+
+| カラム名 | 型      | 備考           |
+| :------- | :------ | :------------- |
+| id       | bigint  | プライマリキー |
+| name     | varchar | ユーザー名     |
+| email    | varchar | メールアドレス |
+| password | varchar | パスワード     |
+
+### Contactsテーブル
+
+| カラム名    | 型      | 備考                     |
+| :---------- | :------ | :----------------------- |
+| id          | bigint  | プライマリキー           |
+| category_id | bigint  | 外部キー                 |
+| first_name  | varchar | 姓                       |
+| last_name   | varchar | 名                       |
+| gender      | tinyint | 1:男性, 2:女性, 3:その他 |
+| email       | varchar | メールアドレス           |
+| tel         | varchar | 電話番号                 |
+| address     | varchar | 住所                     |
+| building    | varchar | 建物名                   |
+| detail      | text    | お問合せ内容             |
+
+### Categoriesテーブル
+
+| カラム名 | 型      | 備考           |
+| :------- | :------ | :------------- |
+| id       | bigint  | プライマリキー |
+| content  | varchar | お問合せの種類 |
 
 ## ER図
 
 ```mermaid
 erDiagram
-    users ||--o{ contacts : "作成/管理"
-    categories ||--o{ contacts : "分類"
+    Users ||--o| Contacts : "作成者(任意)"
+    Contacts }|--|| Categories : "種類(必須)"
 
-    users {
+    Users {
         bigint id PK
-        varchar name "NOT NULL"
-        varchar email "NOT NULL"
-        varchar password "NOT NULL"
-        timestamp created_at
-        timestamp deleted_at
+        varchar name
+        varchar email
+        varchar password
     }
 
-    categories {
-        bigint id PK
-        varchar content "NOT NULL / お問い合わせ種類"
-        timestamp created_at
-        timestamp deleted_at
-    }
-
-    contacts {
+    Contacts {
         bigint id PK
         bigint category_id FK
-        varchar first_name "NOT NULL"
-        varchar last_name "NOT NULL"
-        tinyint gender "NOT NULL"
-        varchar email "NOT NULL"
-        varchar tel "NOT NULL / 3分割を結合"
-        varchar address "NOT NULL"
+        varchar first_name
+        varchar last_name
+        tinyint gender "1:男性, 2:女性, 3:その他"
+        varchar email
+        varchar tel
+        varchar address
         varchar building
-        text detail "NOT NULL"
-        timestamp created_at
-        timestamp deleted_at
+        text detail
     }
+
+    Categories {
+        bigint id PK
+        varchar content
+    }
+
 ```
 
-##  使用技術
-- **Framework**: Laravel 8.x
-- **Database**: MySQL 8.0
-- **Environment**: Docker / Docker Compose
-- **Language**: PHP 7.4 / HTML / CSS (Tailwind CSS)
+## 画面一覧
 
-##  機能一覧
-- **お問い合わせ入力フォーム**（バリデーション機能付き）
-- **確認画面・サンクスページ**
-- **管理画面ログイン機能**（Laravel Fortify/Breeze等）
-- **お問い合わせ検索・詳細表示**
-- **データ削除機能**（論理削除）
+| 画面名               | パス (Path) | ディレクトリ名 | 画面説明                             |
+| :------------------- | :---------- | :------------- | :----------------------------------- |
+| **お問合せフォーム** | `/`         | `/`            | お問合せ情報の入力                   |
+| **確認画面**         | `/confirm`  | `/`            | 入力内容の最終確認                   |
+| **サンクスページ**   | `/thanks`   | `/`            | 送信完了の通知                       |
+| **ユーザー登録**     | `/register` | `auth`         | 新規ユーザーアカウントの作成         |
+| **ログイン**         | `/login`    | `auth`         | 管理画面へのログイン                 |
+| **管理画面**         | `/admin`    | `/`            | お問合せ一覧の表示・検索・削除       |
+| **ログアウト**       | `/logout`   | -              | セッションを終了しログイン画面へ移動 |
+| **CSV出力**          | `/export`   | -              | 検索結果をCSV形式でダウンロード      |
 
-##  環境構築
-```bash
-# 1. リポジトリをクローン
-git clone git@github.com:yurikodoi/contact-form-test.git
+## 環境構築
 
-# 2. フォルダへ移動
-cd contact-form-test
-
-# 3. Dockerコンテナの起動
-docker-compose up -d --build
-
-# 4. パッケージのインストール
-docker-compose exec app composer install
-
-# 5. 環境設定ファイルの作成
-docker-compose exec app cp .env.example .env
-
-# 6. アプリケーションキーの生成
-docker-compose exec app php artisan key:generate
-
-# 7. マイグレーションとシーディング（初期データ投入）
-docker-compose exec app php artisan migrate --seed
+1. リポジトリをクローン
+   ```bash
+   git clone git@github.com:your-repo/project.git
+   ```
