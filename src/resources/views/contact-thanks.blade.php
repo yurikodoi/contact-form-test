@@ -9,7 +9,6 @@
     header { display: none !important; }
 </style>
 <div class="thanks__content">
-    {{-- 背景の巨大文字（全大文字をご希望なら THANK YOU に） --}}
     <div class="thanks__back-text" translate="no">Thank you</div>
 
     <div class="thanks__inner">

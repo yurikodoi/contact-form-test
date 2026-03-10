@@ -1,0 +1,101 @@
+/* ==========================================================================
+   確認画面（Confirm）専用スタイル
+   ========================================================================== */
+
+/* 確認画面全体のレイアウト */
+.confirm__content {
+    background-color: #ffffff;
+    margin: 0 auto;
+    padding: 60px 0;
+    max-width: 1000px;
+    width: 90%;
+}
+
+.confirm__heading h1 {
+    color: #8b7969;
+    text-align: center;
+    font-size: 35px;
+    padding-top: 50px;
+    margin-bottom: 40px;
+    font-family: 'Inika', serif;
+    font-weight: 400;
+}
+
+/* 確認テーブルのスタイル */
+.confirm-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+}
+
+.confirm-table__row {
+    border-bottom: 1px solid #e0dfde;
+}
+
+.confirm-table__header {
+    width: 30%;
+    text-align: left;
+    padding: 30px 0 30px 40px;
+    background-color: #B9A899;
+    color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.confirm-table__text {
+    width: 70%;
+    padding: 30px 0 30px 40px;
+    color: #333333;
+    font-size: 16px;
+    border-bottom: 1px solid #e0dfde;
+    word-break: break-all;
+}
+
+.confirm-table__row:last-child .confirm-table__header,
+.confirm-table__row:last-child .confirm-table__text {
+    border-bottom: none;
+}
+
+/* 確認画面のボタンエリア */
+.form__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    margin-top: 50px;
+}
+
+.form__button-submit {
+    background-color: #8b7969;
+    color: #fff;
+    padding: 15px 80px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Inika';
+    transition: opacity 0.3s;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.form__button-back {
+    background: none;
+    border: none;
+    color: #333333;
+    text-decoration: underline;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Inika';
+    cursor: pointer;
+    padding: 15px 0;
+    transition: opacity 0.3s;
+}
+
+.form__button-submit:hover,
+.form__button-back:hover {
+    opacity: 0.7;
+}

@@ -125,98 +125,97 @@ body {
 }
 
 /* ==========================================================================
-   5. テーブル・ユーティリティ (Table & Pagination) - 最終・最強版
+   5. テーブル・ユーティリティ (Table & Pagination) 
    ========================================================================== */
 
-/* 親コンテナ：左にボタン、右にページネーションを絶対配置 */
+/* 親コンテナ*/
 .table-utility {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    margin: 30px 0 20px !important;
-    width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 30px 0 20px;
+    width: 100%;
 }
 
-/* エクスポートボタン：見本通りのベージュ背景に戻しました */
+/* エクスポートボタン */
 .btn-export {
-    background-color: #e2d9d0 !important;
-    border-radius: 2px !important;
-    color: #8b7969 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: 14px !important;
-    height: 35px !important;
-    padding: 0 25px !important;
-    text-decoration: none !important;
-    border: none !important;
-    flex-shrink: 0 !important;
+    background-color: #e2d9d0;
+    border-radius: 2px;
+    color: #8b7969;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    height: 35px;
+    padding: 0 25px;
+    text-decoration: none;
+    border: none;
+    flex-shrink: 0;
 }
 
-/* ページネーションエリア：ここが消えるのを防ぐ */
+/* ページネーションエリア */
 .table-pagination {
-    display: block !important;
-    margin-left: auto !important;
+    display: block;
+    margin-left: auto;
 }
 
-/* 「Showing 1 to 7...」などのテキストを徹底的に隠す */
 .table-pagination nav p,
 .table-pagination nav>div:first-child,
 .table-pagination .hidden.sm\:flex-1,
 .table-pagination .text-sm.text-gray-700 {
-    display: none !important;
+    display: none;
 }
 
-/* ページネーションの本体：ul でも div でも横並びにする */
+/* ページネーションの本体*/
 .table-pagination ul,
 .table-pagination nav div:last-child,
 .pagination {
-    display: flex !important;
-    flex-direction: row !important;
-    list-style: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-/* 数字と矢印のボタン：あらゆるタグ（a, span, page-link）を正方形にする */
+/* 数字と矢印のボタン */
 .table-pagination li a,
 .table-pagination li span,
 .table-pagination nav a,
 .table-pagination nav span,
 .pagination .page-link {
-    background: #fff !important;
-    border: 1px solid #e0dfde !important;
-    color: #8b7969 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    font-size: 13px !important;
-    width: 35px !important;
-    height: 35px !important;
-    min-width: 35px !important;
-    text-decoration: none !important;
-    margin-left: -1px !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
+    background: #fff;
+    border: 1px solid #e0dfde;
+    color: #8b7969;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    text-decoration: none;
+    margin-left: -1px;
+    border-radius: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* 現在のページ：茶色背景に白文字 */
+/* 現在のページ*/
 .table-pagination .active span,
 .table-pagination .active a,
 .table-pagination nav span[aria-current="page"],
 .pagination .active .page-link {
-    background-color: #8b7969 !important;
-    border-color: #8b7969 !important;
-    color: #fff !important;
-    z-index: 10 !important;
+    background-color: #8b7969;
+    border-color: #8b7969;
+    color: #fff;
+    z-index: 10;
 }
 
 /* 無効な矢印（1ページ目の「前へ」など）を薄くする */
 .table-pagination .disabled span,
 .table-pagination nav span:not([aria-current="page"]) {
-    color: #ccc !important;
-    background-color: #fcfcfc !important;
+    color: #ccc;
+    background-color: #fcfcfc;
 }
 
 /* ==========================================================================
@@ -271,10 +270,9 @@ body {
 .modal.show {
     display: flex !important;
 }
-
 .admin-modal {
     margin: 0;
-    max-width: 550px;
+    max-width: 600px;
     width: 90%;
 }
 
@@ -283,9 +281,10 @@ body {
     border: none;
     border-radius: 0;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    padding: 40px 60px;
+    padding: 80px 60px ;
     position: relative;
     width: 100%;
+    height: 550px;
 }
 
 .modal-header .close {
@@ -301,7 +300,7 @@ body {
 
 .detail-row {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .detail-label {
@@ -337,21 +336,19 @@ body {
    ========================================================================== */
 body {
     background-color: #fff;
-    /* 背景は全部白色 */
     color: #8b7969;
-    font-family: "Noto Sans JP", sans-serif;
+    font-family: "Inika";
     margin: 0;
 }
 
 .container {
     margin: 0 auto;
     max-width: 1230px;
-    /* ボタンの配置に合わせて少し広めに調整 */
     padding: 60px 20px 100px;
 }
 
 .page-title {
-    font-family: 'Inika', serif;
+    font-family: 'Inika';
     font-weight: 400;
     font-size: 35px;
     line-height: 100%;
@@ -367,15 +364,12 @@ body {
 .form-input,
 .form-select {
     background-color: #fff;
-    /* 背景白 */
     border: 1px solid #e0dfde;
-    /* 境界線のみ */
     border-radius: 2px;
     box-sizing: border-box;
     color: #8b7969;
     font-size: 14px;
     height: 50px;
-    /* ボタンに合わせて50pxに統一 */
     padding: 0 15px;
     width: 100%;
 }
@@ -415,19 +409,15 @@ body {
     color: #fff;
     border: none;
     width: 102.48px;
-    /* リセットボタンと統一 */
     height: 50px;
 }
 
-/* リセットボタン：詳細スペックを反映 */
+/* リセットボタン */
 .btn--reset {
     background-color: #e2d9d0;
     color: #fff;
-    /* 文字色は白色 */
     width: 102.48px;
-    /* ご指定の 102.4757...px */
     height: 50px;
-    /* ご指定の 50 */
     border-width: 1px;
     border-color: #e2d9d0;
     opacity: 1;
@@ -435,18 +425,14 @@ body {
 }
 
 /* ==========================================================================
-   4. テーブル・ボタンデザイン (修正版)
+   4. テーブル・ボタンデザイン
    ========================================================================== */
 
 /* 詳細ボタン：指定のスペックを完全反映 */
 .btn-detail {
-    /* サイズ・配置 */
     width: 76px;
     height: 39px;
     box-sizing: border-box;
-    /* パディングを含めて76x39にする設定 */
-
-    /* 背景・ボーダー */
     background-color: #fff;
     border: 1px solid #e0dfde;
     border-radius: 2px;
@@ -456,7 +442,6 @@ body {
     color: #bbab98;
     font-size: 14px;
     padding: 8px 20px 8px 20px;
-    /* 指定のパディング */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -489,11 +474,10 @@ body {
 }
 
 /* ==========================================================================
-   6. テーブル本体 (微調整)
+   6. テーブル本体 
    ========================================================================== */
 .admin-table td {
     padding: 15px 20px;
-    /* 詳細ボタンの高さ(39px)に合わせてセルの高さを微調整 */
     border-bottom: 1px solid #e0dfde;
     color: #8b7969;
     vertical-align: middle;

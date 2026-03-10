@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- 強制リフレッシュ付きのCSS読み込み --}}
-<link rel="stylesheet" href="{{ asset('css/contact-form.css') }}?v={{ time() }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/contact-confirm.css') }}?v={{ time() }}">
 
 <div class="confirm__content">
     <div class="confirm__heading">
-        <h2>Confirm</h2>
+        <h1>Confirm</h1>
     </div>
 
     <form class="form" action="{{ route('contact.submit') }}" method="post">
@@ -69,7 +71,6 @@
             <tr class="confirm-table__row">
                 <th class="confirm-table__header">お問い合わせの種類</th>
                 <td class="confirm-table__text">
-                    {{-- 修正：$categoriesを使って名前を表示 --}}
                     @foreach($categories as $category)
                         @if($category->id == $validatedData['inquiry_type'])
                             {{ $category->name }}
@@ -89,9 +90,9 @@
         </table>
 
         <div class="form__button">
-            {{-- 送信ボタン：見本通りのクラス名 --}}
+            {{-- 送信ボタン --}}
             <button class="form__button-submit" type="submit">送信</button>
-            {{-- 修正ボタン：aタグではなくhistory.backで入力内容を保持 --}}
+            {{-- 修正ボタン--}}
             <a class="form__button-back" href="#" onclick="history.back(); return false;">修正</a>
         </div>
     </form>

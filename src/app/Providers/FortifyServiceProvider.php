@@ -6,12 +6,14 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -20,7 +22,10 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(
+            \Laravel\Fortify\Http\Requests\LoginRequest::class,
+            \App\Http\Requests\Auth\LoginRequest::class
+        );
     }
 
     /**
@@ -35,7 +40,6 @@ class FortifyServiceProvider extends ServiceProvider
 
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
-
             return Limit::perMinute(5)->by($throttleKey);
         });
 
@@ -45,20 +49,17 @@ class FortifyServiceProvider extends ServiceProvider
 
         // 会員登録画面
         Fortify::registerView(function () {
-        return view('auth.register');
+            return view('auth.register');
         });
 
-       // ログイン画面
+        // ログイン画面
         Fortify::loginView(function () {
-        return view('auth.login');
+            return view('auth.login');
         });
-        
     }
 }
 
 
-
-// app/Providers/FortifyServiceProvider.php
 
 
 

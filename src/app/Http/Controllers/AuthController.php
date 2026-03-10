@@ -8,6 +8,6 @@ class AuthController extends Controller
 {
     public function showRegister()
     {
-        return view('auth.register'); // resources/views/auth/register.blade.php を表示
+        return view('auth.register');
     }
 }

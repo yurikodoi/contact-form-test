@@ -9,7 +9,6 @@ class ContactDeleteController extends Controller
 {
     public function deleteContact($id)
     {
-        // 該当するお問い合わせを削除
         $contact = Contact::findOrFail($id);
         $contact->delete();
 

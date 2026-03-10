@@ -1,9 +1,9 @@
 /* 全体の背景色：指定のベージュ */
 body {
-    background-color: #F1ECE6;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
-    font-family: "Inika", serif;
+    font-family: 'Inika';
     color: #333;
 }
 
@@ -12,6 +12,7 @@ body {
     background-color: #ffffff;
     width: 100%;
     border-bottom: 1px solid #e0dfde;
+    font-family: 'Inika';
 }
 
 .header__inner {
@@ -20,7 +21,6 @@ body {
     padding: 20px 40px;
     display: flex;
     justify-content: center;
-    /* ロゴを中央に */
     align-items: center;
     position: relative;
 }
@@ -30,11 +30,10 @@ body {
     color: #8b7969;
     text-decoration: none;
     font-weight: normal;
-    font-family: "Inika", serif;
-    /* 見本の優雅な雰囲気に */
+    font-family: 'Inika';
 }
 
-/* 右上のログインボタン：会員登録画面でのみ表示 */
+/* 右上のログインボタン*/
 .header__link-login {
     position: absolute;
     right: 40px;
@@ -56,7 +55,6 @@ body {
 
 .header__nav {
     position: absolute;
-    /* 右端に固定 */
     right: 40px;
 }
 

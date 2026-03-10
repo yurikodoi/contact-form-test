@@ -1,24 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/admin.css') }}?{{ time() }}">
 
 <div class="container">
-    <h2 class="page-title">Admin</h2>
+    <h1 class="page-title">Admin</h1>
 
 {{-- 検索フォームセクション --}}
     <form action="{{ route('contact.search') }}" method="GET" class="search-form">
         <div class="search-form__inner">
-            
-            {{-- キーワード入力：幅を適切に保ちつつ縮みすぎないように設定 --}}
+
+            {{-- キーワード入力 --}}
             <div class="search-form__item search-form__item--keyword">
                 <input type="text" name="keyword" class="form-input"
                     placeholder="名前やメールアドレスを入力してください"
                     value="{{ request('keyword') }}">
             </div>
 
-            {{-- 性別選択：被りを防ぐために最小幅を固定 --}}
+            {{-- 性別選択--}}
             <div class="search-form__item search-form__item--gender">
                 <select name="gender" class="form-select">
                     <option value="">性別</option>
@@ -49,22 +51,17 @@
                 <button type="submit" class="btn btn--search">検索</button>
                 <a href="{{ route('contact.index') }}" class="btn btn--reset">リセット</a>
             </div>
-
         </div>
     </form>
 
     {{-- エクスポート & ページネーションエリア --}}
 <div class="table-utility">
-    {{-- 左側に配置 --}}
-    <a href="{{ route('contact.export') }}" class="btn-export">エクスポート</a>
-
-    {{-- 右側に配置 --}}
+    <a href="{{ route('contact.export', request()->query()) }}" class="btn-export">エクスポート</a>
     <div class="table-pagination">
         {{ $contacts->appends(request()->query())->links('pagination::bootstrap-4') }}
     </div>
 </div>
 
-    {{-- お問い合わせ一覧テーブル --}}
 {{-- お問い合わせ一覧テーブル --}}
 <table class="admin-table">
     <thead>
@@ -81,8 +78,8 @@
             <tr class="admin-table__row">
                 {{-- フルネームを表示 --}}
                 <td>{{ $contact->last_name }}&nbsp;{{ $contact->first_name }}</td>
-                
-                {{-- 性別判定（規約に基づきシンプルに記述） --}}
+
+                {{-- 性別判定 --}}
                 <td>
                     @php
                         $genderLabels = [1 => '男性', 2 => '女性', 3 => 'その他'];
@@ -91,12 +88,12 @@
                 </td>
 
                 <td>{{ $contact->email }}</td>
-                
-                {{-- 【修正箇所】お問い合わせの種類を表示 --}}
+
+                {{-- お問い合わせの種類を表示 --}}
                 <td>
                     {{ $contact->category->name ?? '不明' }}
                 </td>
-                
+
                 <td>
                     <button type="button" class="btn-detail"
                         data-toggle="modal"
@@ -115,69 +112,69 @@
     {{-- モーダル本体 --}}
     <div class="modal fade" id="contactModal{{ $contact->id }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog admin-modal" role="document">
-            <div class="modal-content">
-                
+        <div class="modal-content">
 
-                {{-- 閉じるボタン --}}
-                <div class="modal-header">
+
+            {{-- 閉じるボタン --}}
+            <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </div>
+            </div>
 
-                <div class="modal-body">
-                    {{-- 詳細リスト --}}
-                    <div class="detail-container">
-                        <div class="detail-row">
-                            <span class="detail-label">お名前</span>
-                            <span class="detail-data">{{ $contact->last_name }}&nbsp;{{ $contact->first_name }}</span>
-                        </div>
-
-                        <div class="detail-row">
-                            <span class="detail-label">性別</span>
-                            <span class="detail-data">{{ $genderLabels[$contact->gender] ?? '不明' }}</span>
-                        </div>
-
-                        <div class="detail-row">
-                            <span class="detail-label">メールアドレス</span>
-                            <span class="detail-data">{{ $contact->email }}</span>
-                        </div>
-
-                        <div class="detail-row">
-                            <span class="detail-label">電話番号</span>
-                            <span class="detail-data">{{ $contact->phone1 }}{{ $contact->phone2 }}{{ $contact->phone3 }}</span>
-                        </div>
-
-                        <div class="detail-row">
-                            <span class="detail-label">住所</span>
-                            <span class="detail-data">{{ $contact->address }}</span>
-                        </div>
-
-                        <div class="detail-row">
-                            <span class="detail-label">建物名</span>
-                            <span class="detail-data">{{ $contact->building ?? '' }}</span>
-                        </div>
-
-                        <div class="detail-row">
-                            <span class="detail-label">お問い合わせの種類</span>
-                            <span class="detail-data">{{ $contact->category->name ?? '不明' }}</span>
-                        </div>
-
-                        <div class="detail-row">
-                            <span class="detail-label">お問い合わせ内容</span>
-                            <span class="detail-data detail-data--textarea">{{ $contact->detail }}</span>
-                        </div>
+            <div class="modal-body">
+                {{-- 詳細リスト --}}
+                <div class="detail-container">
+                    <div class="detail-row">
+                        <span class="detail-label">お名前</span>
+                        <span class="detail-data">{{ $contact->last_name }}&nbsp;{{ $contact->first_name }}</span>
                     </div>
 
-                    {{-- 削除アクション --}}
-                    <form action="{{ route('contact.delete', $contact->id) }}" method="POST" class="delete-form">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn-delete">削除</button>
-                    </form>
+                    <div class="detail-row">
+                        <span class="detail-label">性別</span>
+                        <span class="detail-data">{{ $genderLabels[$contact->gender] ?? '不明' }}</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="detail-label">メールアドレス</span>
+                        <span class="detail-data">{{ $contact->email }}</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="detail-label">電話番号</span>
+                        <span class="detail-data">{{ $contact->tel }}</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="detail-label">住所</span>
+                        <span class="detail-data">{{ $contact->address }}</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="detail-label">建物名</span>
+                        <span class="detail-data">{{ $contact->building ?? '' }}</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="detail-label">お問い合わせの種類</span>
+                        <span class="detail-data">{{ $contact->category->name ?? '不明' }}</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="detail-label">お問い合わせ内容</span>
+                        <span class="detail-data detail-data--textarea">{{ $contact->detail }}</span>
+                    </div>
                 </div>
 
+                {{-- 削除アクション --}}
+                <form action="{{ route('contact.delete', $contact->id) }}" method="POST" class="delete-form">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-delete">削除</button>
+                </form>
             </div>
+
+        </div>
         </div>
     </div>
 @endforeach

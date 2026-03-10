@@ -1,54 +1,3 @@
-/* これを contact-form.css の一番上に！ */
-body {
-    background-color: #f4f4f4;
-    /* 背景は薄いグレー/ベージュ */
-    font-family: 'serif';
-}
-
-.container {
-    width: 80%;
-    margin: 50px auto;
-    background: #fff;
-    padding: 40px;
-}
-
-h2 {
-    text-align: center;
-    color: #8b7969;
-    /* 渋い茶色 */
-    font-size: 28px;
-    margin-bottom: 30px;
-}
-
-/* フォームの各行 */
-.form-group {
-    display: flex;
-    margin-bottom: 25px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-}
-
-.form-group label {
-    width: 30%;
-    color: #8b7969;
-    font-weight: bold;
-}
-
-.input-flex {
-    display: flex;
-    gap: 10px;
-}
-
-input[type="text"],
-input[type="email"],
-select,
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-}
-
 /* --- 1. 全体のリセットと背景色 --- */
 * {
     box-sizing: border-box;
@@ -59,37 +8,34 @@ textarea {
 body {
     background-color: #ffffff;
     color: #333333;
-    font-family: 'Garamond', 'Georgia', serif;
+    font-family: 'Inika';
     width: 100%;
     min-height: 100vh;
 }
 
-/* コンテナやコンテンツ部分の背景も白に統一 */
-.container,
-.confirm__content,
-.thanks__content {
-    background-color: #ffffff;
+.container {
     width: 100%;
+    max-width: 900px;
     margin: 0 auto;
+    padding: 40px 20px;
 }
 
-/* --- 2. ロゴエリア（完全中央・下線） --- */
+/* --- 2. ロゴエリア --- */
 .form-header {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* 水平中央 */
     padding-top: 60px;
     margin-bottom: 20px;
 }
 
 .form-logo {
     color: #81726a;
-    /* 渋い茶色 */
     font-size: 42px;
     letter-spacing: 0.1em;
     text-align: center;
+    text-decoration: none;
 }
 
 .logo-underline {
@@ -107,132 +53,24 @@ main {
     justify-content: center;
 }
 
-.container {
-    width: 100%;
-    max-width: 900px;
-    padding: 40px 20px;
-    background-color: transparent;
-}
-
-h2 {
-    text-align: center;
-    color: #81726a;
-    font-size: 30px;
-    margin-bottom: 50px;
-    letter-spacing: 0.1em;
-}
-
-/* --- 4. フォームの横並びレイアウト（ここが崩れの原因でした） --- */
-.form-group {
-    display: flex;
-    margin-bottom: 30px;
-    align-items: flex-start;
-    /* ラベルを上に揃える */
-}
-
-.form-label {
-    width: 30%;
-    font-weight: bold;
-    color: #8d7f76;
-    /* 薄い茶色 */
-    padding-top: 14px;
-}
-
-.form-label::after {
-    content: " ※";
-    color: #eec9c9;
-    font-size: 14px;
-}
-
-.form-input-content {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-}
-
-/* 姓名・電話番号を横に並べる */
-.input-flex-container,
-.tel-container {
-    display: flex;
-    gap: 15px;
-    width: 100%;
-}
-
-.input-unit {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-/* --- 5. 入力欄のデザイン --- */
-.form-control {
-    width: 100% !important;
-    background-color: #f4f5f7 !important;
-    /* お見本のグレー */
-    border: none !important;
-    padding: 16px !important;
-    border-radius: 2px !important;
-    font-size: 16px;
-}
-
-.form-control::placeholder {
-    color: #b1b1b1;
-}
-
-.hyphen {
-    padding-top: 14px;
-    color: #81726a;
-    font-weight: bold;
-}
-
-/* エラーメッセージ */
-.error-msg {
-    color: #ff0000;
-    font-size: 13px;
-    margin-top: 5px;
-    font-weight: bold;
-}
-
-/* --- 6. 確認ボタン（中央） --- */
-.button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 60px;
-    margin-bottom: 80px;
-}
-
-.btn-primary {
-    width: 250px;
-    padding: 16px;
-    background-color: #81726a;
-    color: white;
-    border: none;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: opacity 0.3s;
-}
-
-.btn-primary:hover {
-    opacity: 0.8;
-}
-/* contact-form.css */
+/* --- 4. フォーム入力画面のレイアウト --- */
 .contact-form__content {
     margin: 0 auto;
     width: 60%;
 }
 
-.contact-form__heading h2 {
+.contact-form__heading h1 {
     color: #8b7969;
     text-align: center;
-    font-size: 32px;
-    margin-bottom: 30px;
+    font-size: 35px;
+    padding-top: 100px;
+    margin-bottom: 40px;
+    font-family: 'Inika', serif;
+    font-weight: 400;
 }
 
 .form__group {
     display: flex;
-    /* これで横並びにする */
     margin-bottom: 20px;
 }
 
@@ -255,70 +93,96 @@ h2 {
     width: 70%;
 }
 
-.form__input--flex {
-    display: flex;
-    gap: 20px;
-}
-
-.form__input--flex input,
-.form__input--text input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background: #f4f4f4;
-    /* フォーム内の薄いグレー */
-}
-
-.form__button {
-    text-align: center;
-        margin-top: 40px;
-    }
-
-.form__button-submit {
-    display: inline-block;
-        background-color: #8b7969;
-        color: #ffffff;
-        padding: 10px 60px;
-        border: none;
-        border-radius: 4px;
-        font-size: 18px;
-        cursor: pointer;
-        transition: opacity 0.3s;
-    }
-/* 電話番号用の横並び */
-.form__input--flex-phone {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.form__input--flex-phone input {
-    width: 30%;
-    /* 3分割にする */
-}
-
-/* ラジオボタン */
 .form__input--radio {
     display: flex;
-    gap: 20px;
+    gap: 45px;
     padding-top: 10px;
 }
 
 .form__input--radio label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-weight: normal;
     color: #333;
+    cursor: pointer;
     width: auto;
-    /* ラベル幅を解除 */
 }
 
-/* セレクトボックスとテキストエリア */
+/* --- ラジオボタンのカスタムデザイン --- */
+
+.form__input--radio input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    background: #fff;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.form__input--radio input[type="radio"]:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: #8b7969;
+    border-radius: 50%;
+}
+
+.form__input--radio input[type="radio"]:checked {
+    border-color: #8b7969;
+}
+
+.form__input--radio label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-family: 'Inika';
+}
+
+.form__input--flex-phone {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.form__input--flex-phone input {
+    flex: 1;
+    height: 40px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    background: #f4f4f4;
+    border-radius: 2px;
+}
+
+.form__input--text input,
+.form__input--flex input,
 select,
 textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+    height: 40px;
+    padding: 10px 15px;
+    border: 1px solid #e0dfde;
     background: #f4f4f4;
-    font-family: inherit;
+    border-radius: 2px;
+    font-family: 'Inika';
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.form__input--flex {
+    display: flex;
+    gap: 20px;
 }
 
 textarea {
@@ -330,275 +194,53 @@ textarea {
     font-size: 14px;
     margin-top: 5px;
     height: 20px;
-    /* エラーが出てもガタつかないように */
-}
-.form__input--flex {
-    display: flex;
-    gap: 20px;
 }
 
-.input-unit {
-    width: 100%;
-    /* 50%ずつに分ける */
-}
-/* --- 追加：サンクスページ用 --- */
-.thanks-container {
-    text-align: center;
-    padding: 100px 20px;
-}
-
-.thanks-msg {
-    font-size: 24px;
-    color: #81726a;
-    margin-bottom: 40px;
-}
-
-/* --- 追加：管理画面（Admin）用 --- */
-.admin-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.admin-table {
-    width: 100%;
-    background: #fff;
-    border-collapse: collapse;
-}
-
-.admin-table th {
-    background: #81726a;
-    color: #fff;
-    padding: 15px;
-}
-/* 確認画面のスタイル */
-.confirm__content {
-        margin: 0 auto;
-        padding: 60px 0;
-        max-width: 800px;
-    }
-
-.confirm__heading h2 {
-        color: #8b7969;
-        /* 見本の薄茶色 */
-        text-align: center;
-        font-size: 32px;
-        margin-bottom: 50px;
-        font-weight: bold;
-    }
-
-.confirm-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 50px;
-    }
-
-.confirm-table__header {
-        width: 30%;
-        text-align: left;
-        padding: 25px 0 25px 20px;
-        color: #333333;
-        font-weight: bold;
-        vertical-align: top;
-    }
-
-.confirm-table__text {
-        width: 70%;
-        padding: 25px 0 25px 20px;
-        color: #333333;
-        font-size: 16px;
-        word-break: break-all;
-        /* 長いテキストの改行対策 */
-    }
-
-/* 各行の高さと境界線 */
-.confirm-table__row {
-    border-bottom: 1px solid #eeeeee;
-    /* 薄い線で区切る */
-}
-
-/* ボタン周りの調整 */
-.form__button-back {
-    display: block;
-    margin-top: 20px;
-    color: #333333;
-    text-decoration: underline;
-    font-size: 14px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 15px 0;/* 横のパディングをなくして文字位置を調整 */
-    text-decoration: underline;
-}
-
-.form__button-submit:hover {
-    opacity: 0.8;
-}
-
-
-/* 確認画面全体の余白調整 */
-
-.confirm__content {
-        background-color: #ffffff;
-        margin: 0 auto;
-        padding: 60px 0;
-        /* 800pxから1000pxに広げ、画面全体のバランスを取ります */
-        max-width: 1000px;
-        width: 90%;
-        /* スマホやタブレットで見た時に左右に少し余白を残す */
-    }
-
-.confirm__heading h2 {
-    color: #8b7969;
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 40px;
-}
-
-/* 2. 表のスタイル（幅は100%を維持） */
-.confirm-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 50px;
-    /* 見本のように少し文字を大きくして余白をゆったり取ります */
-}
-
-.confirm-table__row {
-    border-bottom: 1px solid #e0dfde;
-    /* 見本に近い薄い線 */
-}
-
-.confirm-table__header {
-    width: 30%;
-    text-align: left;
-    padding: 30px 0 30px 40px;
-
-    /* 背景を薄茶色に（見出しやボタンの色と統一） */
-    background-color: #B9A899;
-
-    /* 文字を白にする */
-    color: #ffffff;
-
-    font-weight: bold;
-    /* セル同士の隙間をなくして綺麗に見せるため */
-    border-bottom: 1px solid #ffffff;
-}
-
-/* 右側の入力内容（td）の境界線を微調整 */
-.confirm-table__text {
-    width: 70%;
-    padding: 30px 0 30px 40px;
-    color: #333;
-    font-size: 16px;
-    /* 左側が茶色になったので、右側の線は元の薄い色のままに */
-    border-bottom: 1px solid #e0dfde;
-}
-
-.confirm-table__row:last-child .confirm-table__header,
-.confirm-table__row:last-child .confirm-table__text {
-    border-bottom: none;
-}
-
-/* ボタン */
 .form__button {
-        display: flex;
-        /* 横並びにする魔法の言葉 */
-        justify-content: center;
-        /* 中央に寄せる */
-        align-items: center;
-        /* 上下の高さを揃える */
-        gap: 40px;
-        /* ボタンとボタンの間の隙間 */
-        margin-top: 50px;
-        gap: 80px;
-        /* ボタン同士の間のゆったりした隙間 */
+    margin-top: 50px;
+    text-align: center;
+    width: 100%;
 }
 
-/* 3. ボタンの横幅も少し調整 */
 .form__button-submit {
+    display: inline-block;
     background-color: #8b7969;
-    color: #fff;
-    padding: 12px 80px;
-    /* ボタンも少し大きくして豪華に */
+    color: #ffffff;
+    padding: 15px 100px;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.form__button-back {
-        color: #333;
-        text-decoration: underline;
-        /* 見本に合わせて下線を表示 */
-        font-size: 14px;
-        cursor: pointer;
-        background: none;
-        border: none;
-        padding: 0;
-}
-
-.form__button-submit:hover,
-.form__button-back:hover {
-    opacity: 0.7;
-}
-
-/* 両方のボタンに共通するスタイル（サイズとフォントを一括指定） */
-.form__button-submit,
-.form__button-back {
-    /* フォント設定：サイズと太さを同じにする */
+    border-radius: 0;
     font-size: 16px;
     font-weight: bold;
-    font-family: 'Noto Sans JP', sans-serif;
-
-    /* サイズ設定：高さと幅の感覚を揃える */
-    padding: 15px 80px;
-    /* 上下15px、左右80pxでしっかりした大きさに */
-    border-radius: 4px;
-    border: none;
     cursor: pointer;
     transition: opacity 0.3s;
-    text-decoration: none;
-    /* リンクの下線を消す */
-    display: inline-block;
-    text-align: center;
 }
 
-/* サンクスページ全体の囲い */
+/* --- 5. サンクスページ用 --- */
 .thanks__content {
     position: relative;
-    /* 子要素の絶対配置の基準にする */
     width: 100%;
     height: 100vh;
-    /* 画面の高さの8割を確保 */
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
     overflow: hidden;
-    /* はみ出した文字を隠す */
 }
 
-/* 背後の巨大な Thank you */
 .thanks__back-text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 180px;
-    /* 見本に合わせて超巨大に */
     font-weight: bold;
     color: #f6f6f6;
-    /* ほとんど白に近い薄いグレー */
     z-index: 1;
     white-space: nowrap;
-    font-family: 'serif';
-    /* 見本のフォントが明朝体ぽければ serif に */
+    font-family: 'Inika';
     pointer-events: none;
-    /* 文字がボタンの邪魔をしないようにする */
 }
 
-/* 前面のメッセージエリア */
 .thanks__inner {
     position: relative;
     z-index: 2;
@@ -612,19 +254,11 @@ textarea {
     font-weight: 500;
 }
 
-.thanks__button-area {
-    display: flex;
-    justify-content: center;
-    /* ボタンを水平方向の真ん中に */
-}
-
-/* HOMEボタン */
 .thanks__button {
     display: inline-block;
     background-color: #8b7969;
     color: #ffffff;
     padding: 15px 60px;
-    /* 見本通りの横長ボタン */
     text-decoration: none;
     border-radius: 4px;
     font-size: 16px;

@@ -6,9 +6,9 @@
 <link rel="stylesheet" href="{{ asset('css/contact-form.css') }}">
 <div class="contact-form__content">
     <div class="contact-form__heading">
-        <h2>Contact</h2>
+        <h1>Contact</h1>
     </div>
-    <form class="form" action="{{ route('contact.confirm') }}" method="post">
+    <form class="form" action="{{ route('contact.confirm') }}" method="post" novalidate>
         @csrf
 
 

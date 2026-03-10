@@ -5,23 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Contact;
 use Illuminate\Http\Request;
-// バリデーションルールを一括管理しているRequestクラスをインポート
 use App\Http\Requests\ContactRequest; 
 
 class ContactConfirmController extends Controller
 {
     /**
      * 確認画面を表示する
-     * web.phpで 'handleForm' を指定しているなら、名前を合わせる必要があります
      */
-    public function handleForm(ContactRequest $request) // RequestではなくContactRequestにする
+    public function handleForm(ContactRequest $request) 
     {
         // バリデーション済みデータを取得
         $validatedData = $request->validated();
         
         $categories = Category::all();
 
-        // 修正後のファイル名 'contact-confirm' を確実に指定
+        // 修正後のファイル名 'contact-confirm' を指定
         return view('contact-confirm', compact('validatedData', 'categories'));
     }
 

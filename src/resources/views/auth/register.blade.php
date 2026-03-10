@@ -8,11 +8,11 @@
 
 <div class="register__content">
     <div class="register__header">
-        <h2>Register</h2>
+        <h1>Register</h1>
     </div>
 
     <div class="register-form">
-        <form action="/register" method="post">
+        <form action="/register" method="post" novalidate>
             @csrf
             
             {{-- お名前 --}}

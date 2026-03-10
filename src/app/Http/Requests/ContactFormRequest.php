@@ -35,7 +35,7 @@ class ContactFormRequest extends FormRequest
     }
 
     /**
-     * 評価項目で指定された日本語エラーメッセージ
+     * 日本語エラーメッセージ
      */
     public function messages()
     {

@@ -2,43 +2,100 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AdminController extends Controller
 {
     /**
-     * 管理画面の初期表示
-     *
-     * @return \Illuminate\View\View
+     * 管理画面の表示 兼 検索処理
      */
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::paginate(7);
         $categories = Category::all();
+        
+        // 検索ロジックを共通メソッドで実行
+        $query = $this->applySearch($request);
 
-        return view('contact-admin', compact('contacts', 'categories'));
+        // 7件ずつ表示 ＋ 検索条件をURLに保持
+        $contacts = $query->paginate(7)->appends($request->all());
+
+        return view('admin', compact('contacts', 'categories'));
     }
 
     /**
-     * お問い合わせの検索実行
-     *
-     * @param Request $request
-     * @return \Illuminate\View\View
+     * 検索機能（ルート用：indexを再利用）
      */
     public function searchContacts(Request $request)
     {
-        $query = Contact::query();
+        return $this->index($request);
+    }
 
-        // キーワード検索（名前 or メール）
-        if ($request->filled('keyword')) {
-            $keyword = $request->keyword;
-            $query->where(function ($q) use ($keyword) {
-                $q->where('last_name', 'like', "%{$keyword}%")
-                  ->orWhere('first_name', 'like', "%{$keyword}%")
-                  ->orWhere('email', 'like', "%{$keyword}%");
+    /**
+     * CSVエクスポート
+     */
+    public function exportContacts(Request $request)
+    {
+        // 検索ロジックを共通メソッドで実行
+        $contacts = $this->applySearch($request)->get();
+
+        $csvHeader = ['お名前', '性別', 'メールアドレス', 'お問い合わせの種類', 'お問い合わせ内容'];
+
+        $callback = function () use ($contacts, $csvHeader) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $csvHeader);
+
+            foreach ($contacts as $contact) {
+                $genderLabels = [1 => '男性', 2 => '女性', 3 => 'その他'];
+                fputcsv($file, [
+                    $contact->last_name . ' ' . $contact->first_name,
+                    $genderLabels[$contact->gender] ?? '不明',
+                    $contact->email,
+                    $contact->category->name ?? '不明',
+                    $contact->detail,
+                ]);
+            }
+            fclose($file);
+        };
+
+        $fileName = "contacts_" . date('YmdHis') . ".csv";
+        $headers = [
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        ];
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+    /**
+     * 削除機能
+     */
+    public function destroy($id)
+    {
+        Contact::findOrFail($id)->delete();
+        return redirect()->route('contact.index')->with('success', 'データを削除しました');
+    }
+
+    /**
+     * 【共通メソッド】検索条件をクエリに適用する
+     */
+    private function applySearch(Request $request)
+    {
+        $query = Contact::query()->with('category');
+
+        // キーワード検索
+        if ($keyword = $request->input('keyword')) {
+            $query->where(function($q) use ($keyword) {
+                $q->where('first_name', 'LIKE', "%{$keyword}%")
+                ->orWhere('last_name', 'LIKE', "%{$keyword}%")
+                ->orWhere('email', 'LIKE', "%{$keyword}%")
+                ->orWhereRaw('CONCAT(last_name, first_name) LIKE ?', ["%{$keyword}%"])
+                ->orWhereRaw('CONCAT(last_name, " ", first_name) LIKE ?', ["%{$keyword}%"]);
             });
         }
 
@@ -48,99 +105,15 @@ class AdminController extends Controller
         }
 
         // 種類検索
-        if ($request->filled('inquiry_type')) {
-            $query->where('category_id', $request->inquiry_type);
+        if ($type = $request->input('inquiry_type')) {
+            $query->where('category_id', $type);
         }
 
         // 日付検索
-        if ($request->filled('date')) {
-            $query->whereDate('created_at', $request->date);
+        if ($date = $request->input('date')) {
+            $query->whereDate('created_at', $date);
         }
 
-        $contacts = $query->paginate(7);
-        
-        // Viewでセレクトボックスを表示するために必ず取得する
-        $categories = Category::all();
-
-        return view('contact-admin', compact('contacts', 'categories'));
-    }
-
-    /**
-     * CSVエクスポート処理
-     *
-     * @return StreamedResponse
-     */
-    public function exportContacts()
-    {
-        $csvFileName = 'contacts_export.csv';
-        $contacts = Contact::all();
-
-        $response = new StreamedResponse(function () use ($contacts) {
-            $handle = fopen('php://output', 'w');
-            
-            // 文字化け対策（Excel対応）
-            stream_filter_append($handle, 'convert.iconv.UTF-8/CP932//TRANSLIT');
-
-            // ヘッダー
-            fputcsv($handle, ['お名前', '性別', 'メールアドレス', '電話番号', '住所', '建物名', 'お問い合わせの種類', 'お問い合わせ内容']);
-
-            foreach ($contacts as $contact) {
-                fputcsv($handle, [
-                    $contact->last_name . ' ' . $contact->first_name,
-                    $this->getGenderLabel($contact->gender),
-                    $contact->email,
-                    $contact->phone1 . $contact->phone2 . $contact->phone3,
-                    $contact->address,
-                    $contact->building ?? '',
-                    $contact->category->name ?? '不明', // IDではなく名前を出す
-                    $contact->message
-                ]);
-            }
-            fclose($handle);
-        }, 200, [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => "attachment; filename={$csvFileName}",
-        ]);
-
-        return $response;
-    }
-
-    /**
-     * 性別IDをラベルに変換（プライベートメソッド）
-     *
-     * @param int $genderId
-     * @return string
-     */
-    private function getGenderLabel(int $genderId): string
-    {
-        $labels = [1 => '男性', 2 => '女性', 3 => 'その他'];
-        return $labels[$genderId] ?? '不明';
-    }
-
-/**
-     * お問い合わせデータの削除
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function destroy($id)
-    {
-        // 1. 対象のデータを取得
-        $contact = Contact::find($id);
-
-        // 2. データが存在しない場合の安全策
-        if (!$contact) {
-            return redirect()->route('contact.index')->with('error', '対象のデータが見つかりませんでした。');
-        }
-
-        // 3. 削除実行
-        $contact->delete();
-
-        // 4. 一覧画面へリダイレクト
-        return redirect()->route('contact.index')->with('success', 'お問い合わせを削除しました。');
+        return $query;
     }
 }
-
-
-
-

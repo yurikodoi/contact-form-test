@@ -11,15 +11,15 @@ class Contact extends Model
 
     // 保存を許可するカラムを指定します
     protected $fillable = [
-        'category_id', // 👈 ここはDBの設計に合わせて inquiry_type か category_id か確認してください
+        'category_id',
         'first_name',
         'last_name',
         'gender',
         'email',
-        'tel',          // 👈 電話番号を1つのカラムにするなら 'tel'
+        'tel',
         'address',
         'building',
-        'detail',       // 👈 お問い合わせ内容
+        'detail',
     ];
     public function category()
     {

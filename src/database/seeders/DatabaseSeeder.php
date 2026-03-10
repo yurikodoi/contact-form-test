@@ -11,7 +11,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        // 既存のデータをクリアして、画像通りの5項目を作成
         $categories = [
             ['name' => '商品のお届けについて'],
             ['name' => '商品の交換について'],

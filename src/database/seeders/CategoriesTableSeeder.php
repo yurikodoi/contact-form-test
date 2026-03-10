@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB; // DB操作に必要
-use App\Models\Category; // Categoryモデルを使う
+use Illuminate\Support\Facades\DB;
+use App\Models\Category;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -15,7 +15,6 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        // 既存のデータを一度消してから入れる（二重登録防止）
         DB::table('categories')->truncate();
 
         $categories = [

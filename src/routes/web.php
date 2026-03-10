@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\ContactConfirmController;
 use App\Http\Controllers\ContactThanksController;
@@ -9,12 +11,6 @@ use App\Http\Controllers\ContactDeleteController;
 use App\Http\Controllers\ContactController;
 
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
 
 // --- お問い合わせフロー ---
 // 1. お問い合わせ入力画面
@@ -30,22 +26,30 @@ Route::post('/submit', [ContactConfirmController::class, 'submitForm'])->name('c
 Route::get('/thanks', [ContactThanksController::class, 'showThanks'])->name('contact.thanks');
 
 
-// --- 管理画面系（ログイン認証が必要なグループ） ---
+// --- 管理画面系 ---
 Route::middleware('auth')->group(function () {
-    
-    // 管理画面トップ（AdminControllerのindexメソッドを呼び出す）
+
+    // 管理画面トップ
     Route::get('/admin', [AdminController::class, 'index'])->name('contact.index');
 
-    // 検索機能（Bladeで contact.search と呼んでいるので、名前を合わせる）
+    // 検索機能
     Route::get('/admin/search', [AdminController::class, 'searchContacts'])->name('contact.search');
 
     // CSVエクスポート
-    Route::get('/admin/export', [AdminController::class, 'exportContacts'])->name('contact.export');
+    Route::get('/export', [AdminController::class, 'exportContacts'])->name('contact.export');
 
     // 削除機能
     Route::delete('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('contact.delete');
+
+    Route::post('/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/login');
+    })->name('logout');
+
+    Route::get('/admin', [AdminController::class, 'index'])->name('contact.index');
 });
 
-Route::get('/contact', [ContactController::class, 'index']);
 
 

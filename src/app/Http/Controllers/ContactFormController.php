@@ -16,8 +16,6 @@ class ContactFormController extends Controller
         // カテゴリー一覧を取得
         $categories = Category::all();
 
-        // 【重要】入力画面を表示するだけなので、validatedDataは渡しません。
-        // これで「未定義の変数」エラーの根本原因を断ちます。
         return view('contact-form', compact('categories'));
     }
 
@@ -31,7 +29,7 @@ class ContactFormController extends Controller
         
         $categories = Category::all();
 
-        // 確認画面を表示（ここで初めて $validatedData を渡す）
+        // 確認画面を表示
         return view('contact-confirm', compact('validatedData', 'categories'));
     }
 }

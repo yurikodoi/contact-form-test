@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
     <title>FashionablyLate</title>
-    {{-- 共通CSSの読み込み --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/common.css') }}?v={{ time() }}">
-    {{-- 各ページ固有のCSSは各Bladeの @section('css') などで読み込めるようにします --}}
     @yield('css')
 </head>
 <body>
@@ -21,22 +22,22 @@
             @endif
             
             <nav class="header__nav">
-                {{-- Login画面の時は register ボタンを表示 --}}
-                    @if (Request::is('login'))
+            {{-- Login画面の時は register ボタンを表示 --}}
+            @if (Request::is('login'))
                 <a href="/register" class="header__nav-button">register</a>
-                    @endif
+            @endif
 
-                {{-- 3. 管理画面(admin)の時：logoutボタンを表示 --}}
+                {{-- 3. 管理画面の時：logoutボタンを表示 --}}
             @auth
             @if(Request::is('admin*'))
-            <a href="#" class="header__nav-button" 
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                logout</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                </form>
-             @endif
-             @endauth
+            <a href="{{ route('logout') }}" class="header__nav-button" 
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            @endif
+            @endauth
         </nav>
         </div>
     </header>
